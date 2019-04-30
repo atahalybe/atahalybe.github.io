@@ -1,0 +1,109 @@
+<link rel="stylesheet" href="/assets/Css/core.ui.min.css">
+<div class="app">
+  <app-header [fixed]="true" [navbarBrandFull]="{src: '/assets/images/beautysoul.png', width: 'auto', height: 45, alt: 'BeautySoul'}"
+    [navbarBrandMinimized]="{src: '/assets/images/beautysoul.png', width: 'auto', height: 30, alt: 'BeautySoul'}" [sidebarToggler]="'lg'"
+    [asideMenuToggler]="'lg'">
+    <ul class="nav navbar-nav d-md-down-none">
+      <li class="nav-item px-3">
+        <a class="nav-link" href="#">Dashboard</a>
+      </li>
+      <li class="nav-item px-3">
+        <a class="nav-link" href="#">Users</a>
+      </li>
+      <li class="nav-item px-3">
+        <a class="nav-link" href="#">Settings</a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav ml-auto" style="">
+      <li class="nav-item dropdown" dropdown placement="bottom right">
+        <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle
+          (click)="false">
+          <img *ngIf="user.photoURL;else notPhoto" src="{{user.photoURL}}" class="img-avatar" alt="{{user.email}}" />
+          <ng-template #notPhoto>
+            <i class="fa fa-user"></i>
+          </ng-template>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right cursor-pointer"  *dropdownMenu aria-labelledby="simple-dropdown">
+          <div class="dropdown-header text-center">
+            <strong *ngIf="user.displayName; else notDisplayname">{{user.displayName}}</strong>
+            <ng-template #notDisplayname>
+              <strong>{{user.email}}</strong>
+            </ng-template>
+          </div>
+          <a class="dropdown-item" routerLink="/dashboard/profile">
+            <i class="fa fa-user"></i> Profile</a>
+          <a class="dropdown-item" (click)="logout()">
+            <i class="fa fa-lock"></i> Logout</a>
+        </div>
+      </li>
+      <!-- <li class="nav-item dropdown" dropdown placement="bottom right">
+        <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle
+          (click)="bellClick()" style="background-color: white">
+          <i class="fas fa-bell"></i>
+          <span class="badge badge-pill badge-danger" *ngIf="notificationUnseenCount>0">{{notificationUnseenCount}}</span>
+        </a>
+        <div class="dropdown-menu scrollable-menu dropdown-menu-right cursor-pointer" [ngStyle]="{'max-width':getNotificationMaxWidth()}" *dropdownMenu aria-labelledby="simple-dropdown">
+          <div class="dropdown-header text-center" *ngIf="!notifications||notifications.length==0">
+            No Notification
+          </div>
+          <a class="container dropdown-item" routerLink="{{not.link}}" *ngFor="let not of notifications">
+            <div class="col-sm-12 row">
+              <div class="col-1" style="margin-top: 5px">
+                <i class="{{not.icon}}" *ngIf="not.type=='Icon'"></i>
+                <img src="{{not.icon}}" alt="" srcset="" *ngIf="not.type=='Image'" class="rounded-circle" style="height:30px;width:30px">
+              </div>
+              <div class="col-8" style="margin-left: 20px;margin-right:20px">
+                <span>
+                  {{not.notificationBody}}
+                </span>
+                <br>
+                <span>{{not.notificationDescription}}</span>
+                <br>
+                <span>{{not.dateOfCreationString}}</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </li> -->
+
+
+    </ul>
+  </app-header>
+  <div class="app-body">
+    <app-sidebar [fixed]="true" [display]="'lg'">
+      <app-sidebar-nav [navItems]="navItems" [perfectScrollbar] [disabled]="sidebarMinimized"></app-sidebar-nav>
+      <app-sidebar-minimizer></app-sidebar-minimizer>
+    </app-sidebar>
+    <!-- Main content -->
+    <main class="main">
+      <!-- Breadcrumb -->
+      <ol class="breadcrumb">
+        <app-breadcrumb></app-breadcrumb>
+        <!-- Breadcrumb Menu-->
+        <li class="breadcrumb-menu d-md-down-none">
+          <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+            <a class="btn" href="#">
+              <i class="icon-speech"></i>
+            </a>
+            <a class="btn" [routerLink]="['/dashboard']">
+              <i class="icon-graph"></i> &nbsp;Dashboard</a>
+            <a class="btn" href="#">
+              <i class="icon-settings"></i> &nbsp;Settings</a>
+          </div>
+        </li>
+      </ol>
+      <div style="padding: 2%;">
+        <router-outlet></router-outlet>
+      </div>
+      <!-- /.container-fluid -->
+    </main>
+
+  </div>
+  <app-footer>
+    <span></span>
+    <span class="ml-auto">Powered by
+      <a routerLink="/">AvacodaPro</a>
+    </span>
+  </app-footer>
+
+</div>

@@ -1,0 +1,204 @@
+<link rel="stylesheet" href="/assets/Css/style.css" />
+<link rel="stylesheet" href="/assets/Css/navigation.css" />
+<link rel="stylesheet" href="/assets/Css/camera.css" />
+<link rel="stylesheet" href="/assets/Css/swipebox.css" />
+<link rel="stylesheet" href="/assets/Css/bootstrap.min.css" />
+<link rel="stylesheet" href="/assets/Css/Designs.css" />
+
+<div class="header" id="home">
+
+  <!-- Top-Bar -->
+  <header>
+    <div class="top-bar">
+      <!-- Slogan -->
+      <div class="slogan">
+        <p>Beauty Salon in Islamabad & Rawalpindi, Pakistan</p>
+      </div>
+      <!-- //Slogan -->
+
+      <!-- Email -->
+      <div class="email">
+        <p><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> Rawalpindi: <a href="#">051-1234567</a>
+        </p>
+      </div>
+      <!-- //Email -->
+
+      <!-- Phone -->
+      <div class="phone">
+        <p><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>Islamabad : <a href="#">
+            0300-1234567</a></p>
+
+      </div>
+      <!-- //Phone -->
+      <div class="clearfix"></div>
+    </div>
+    <!-- //Top-Bar -->
+
+    <!-- Bottom-Bar -->
+    <div class="bottom-bar">
+      <!-- Logo -->
+      <div class="logo">
+        <a href="Home.html"><img src="/assets/images/beautysoul.png" alt="beauty-soul-islamabad"></a>
+
+      </div>
+      <!-- //Logo -->
+
+      <!-- Social-Icons -->
+      <div class="social">
+        <ul>
+          <li><a href="#" class="facebook" title="Go to Our Facebook Page"></a></li>
+          <li><a href="#" class="twitter" title="Go to Our Twitter Account"></a></li>
+          <li><a href="#" class="googleplus" title="Go to Our Google Plus Account"></a></li>
+          <li><a href="#" class="linkedin" title="Go to Our Instagram Page"></a></li>
+          <li><a href="#" class="blogger" title="Go to Our Pinterest Account"></a></li>
+          <li><a href="#" class="youtube" title="Go to Our Youtube Channel"></a></li>
+
+        </ul>
+      </div>
+      <!-- //Social-Icons -->
+      <div class="clearfix"></div>
+    </div>
+  </header>
+  <!-- //Bottom-Bar -->
+
+  <!-- Navigation -->
+  <nav>
+    <ul class="cd-primary-nav" [class.fade-in]="isNavShow" (click)="isNavShow=false">
+      <li><a routerLink="/">Home</a></li>
+      <li><a routerLink="/about-us">About</a></li>
+      <li><a routerLink="/services">Services</a></li>
+      <li><a routerLink="/gallery">Gallery</a></li>
+      <li><a routerLink="/contact">Contact Us </a></li>
+      <ul *ngIf="user;else noUser">
+        <li>
+          <a>
+            <img *ngIf="user.photoURL;else notPhoto" src="{{user.photoURL}}" class="img-avatar" alt="{{user.email}}" />
+            <ng-template #notPhoto>
+              <i class="fa fa-user"></i>
+            </ng-template>
+            <strong *ngIf="user.displayName; else notDisplayname">{{user.displayName}}</strong>
+            <ng-template #notDisplayname>
+              <strong>{{user.email}}</strong>
+            </ng-template>
+          </a>
+        </li>
+        <li *ngIf="user.isAdmin" >
+          <a routerLink="/admin" > <i class="fa fa-chart-bar"></i> Dashboard</a>
+        </li>
+        <li>
+            <a (click)="logout()">
+                <i class="fa fa-lock"></i> Logout</a>
+        </li>
+
+      </ul>
+
+      <ng-template #noUser>
+        <li><a routerLink="/login">Login</a></li>
+        <li><a routerLink="/signup">SignUp</a></li>
+      </ng-template>
+    </ul>
+  </nav>
+
+  <div class="cd-overlay-nav">
+    <span></span>
+  </div>
+
+  <div class="cd-overlay-content">
+    <span></span>
+  </div>
+
+  <a class="cd-nav-trigger" [class.close-nav]="isNavShow" (click)="isNavShow=!isNavShow">Menu<span
+      class="cd-icon"></span></a>
+  <!-- //Navigation -->
+
+</div>
+<router-outlet></router-outlet>
+<!-- //Header -->
+<!--Footer -->
+<footer>
+  <div class="footer">
+
+
+    <div class="footer-grid-3 links">
+      <div class="container">
+        <div class="col-md-3 col-sm-3 link">
+          <h4>Specialize</h4>
+          <ul>
+            <li><a href="Dulhan-Makeup.html"> Bridal Makeup</a></li>
+            <li><a href="Party-Makeup.html"> Party Makeup</a></li>
+            <li><a href="nail-saloon.html"> Nail Services</a></li>
+            <li><a href="Skin-Care.html"> Skin Treatment</a></li>
+            <li><a href="3d-eyebrows.html"> 3D Eyebrows</a></li>
+            <li class="no-border"><a href="Hair-Styling.html"> Hair Styling</a></li>
+
+          </ul>
+        </div>
+        <div class="col-md-3 col-sm-3 link">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="Mehndi-Artist.html">Mehndi Artist </a></li>
+            <li><a href="Tattoo.html"> Tattoo</a></li>
+            <li><a href="Dulhan-Makeup.html"> Dulhan Makeup</a></li>
+            <li><a href="Items.html"> Purchase Items</a></li>
+            <li class="no-border"><a href="Skin-Care.html"> Skin Treatment</a></li>
+
+          </ul>
+        </div>
+        <div class="col-md-3 col-sm-3 link">
+          <h4>About Us</h4>
+          <ul>
+            <li><a href="Home.html">Home</a></li>
+            <li><a href="beauty-parlor.html">About</a></li>
+            <li><a href="Services.html">Services</a></li>
+            <li><a href="Gallary.html">Gallery</a></li>
+            <li class="no-border"><a href="Contact%20Us.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3 col-sm-3 link">
+          <h4>Contact</h4>
+          <ul>
+            <li>Beauty Soul, Islamabad, Rawalpindi, Pakistan.</li>
+            <li>Tel: 051-1234567</li>
+            <li>Mob: 0300-1234567</li>
+            <li>Islamabad & Rawalpindi.</li>
+
+
+            <li class="no-border"></li>
+          </ul>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- //Footer -->
+<!-- Necessary-JavaScript-File-For-Bootstrap -->
+<script type="text/javascript" src="/assets/Js/bootstrap.min.js"></script>
+<!-- Supportive-JavaScript-File -->
+<script type="text/javascript" src="/assets/Js/jquery.min.js"></script>
+
+
+<!-- Navigation-Effect-JavaScript-Files -->
+<script src="/assets/Js/velocity.min.js"></script>
+<script src="/assets/Js/main.nav.js"></script>
+<!-- //Navigation-Effect-JavaScript-Files -->
+
+
+<!-- Slide-To-Top JavaScript -->
+<script type="text/javascript">
+  $(document).ready(function () {
+    var defaults = {
+      containerID: 'toTop', // fading element id
+      containerHoverID: 'toTopHover', // fading element hover id
+      scrollSpeed: 100,
+      easingType: 'linear'
+    };
+    $().UItoTop({
+      easingType: 'easeOutQuart'
+    });
+  });
+
+</script>
+<a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;">
+  </span></a>
+<!-- //Slide-To-Top JavaScript -->

@@ -1,0 +1,62 @@
+<div class="inner-page">
+  <h1>SIGN UP</h1>
+</div>
+<div class="signup">
+  <form #f="ngForm">
+    <div style="padding:10px">
+
+      <input type="text" class="form-control" placeholder="Name" #displayName="ngModel" [(ngModel)]="user.displayName"
+        name="displayName" required pattern="[a-zA-Z ]{2,50}" style="width:100%">
+      <div *ngIf="displayName.dirty&&displayName.invalid" style="color:red">
+        <span *ngIf="displayName.errors.required">Name is Required</span>
+        <span *ngIf="displayName.errors.pattern">Name is Invalid</span>
+      </div><br>
+      <input class="form-control" type="email" #email="ngModel" [(ngModel)]="emailCredential.email" name="email"
+        required email placeholder="Email" style="width:100%">
+      <div *ngIf="email.dirty&&email.invalid" style="color:red">
+        <span *ngIf="email.errors.required">Email is Required</span>
+        <span *ngIf="email.errors.email">Email is Invalid</span>
+      </div><br>
+      <input type="text" class="form-control" #phoneNumber="ngModel" [(ngModel)]="user.phoneNumber" name="phoneNumber"
+        required
+        pattern="((?:\+|00)[17](?: |\-)?|(?:\+|00)[1-9]\d{0,2}(?: |\-)?|(?:\+|00)1\-\d{3}(?: |\-)?)?(0\d|\([0-9]{3}\)|[1-9]{0,3})(?:((?: |\-)[0-9]{2}){4}|((?:[0-9]{2}){4})|((?: |\-)[0-9]{3}(?: |\-)[0-9]{4})|([0-9]{7}))"
+        placeholder="Phone Number" style="width:100%">
+      <div *ngIf="phoneNumber.dirty&&phoneNumber.invalid" style="color:red">
+        <span *ngIf="phoneNumber.errors.required">Phone Number is Required</span>
+        <span *ngIf="phoneNumber.errors.pattern">Phone Number is Invalid.
+          <br>Only international Number Pattern.
+          <br>+923231234567 or 3231234567</span>
+      </div><br>
+      <input type="password" class="form-control" #password="ngModel" [(ngModel)]="emailCredential.password"
+        name="password" required pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"
+        placeholder="Password" style="width:100%">
+      <div *ngIf="password.dirty&&password.invalid" style="color:red">
+        <span *ngIf="password.errors.required">Password is Required.</span>
+        <span *ngIf="password.errors.pattern">At least one upper case.
+          <br> At least one lower case.
+          <br> At least one digit.
+          <br>At least one special character.
+          <br> Minimum eight in length</span>
+      </div><br>
+      <input type="password" class="form-control" #confirmPassword="ngModel"
+        [(ngModel)]="emailCredential.confirmPassword" name="confirmPassword" required placeholder="Confirm Password"
+        style="width:100%">
+      <div
+        *ngIf="confirmPassword.dirty&&(confirmPassword.invalid||emailCredential.password!=emailCredential.confirmPassword)"
+        style="color:red">
+        <span *ngIf="confirmPassword.errors?.required">Confirm Pasword is Required</span>
+        <br *ngIf="confirmPassword.invalid&&emailCredential.password!=emailCredential.confirmPassword">
+        <span *ngIf="emailCredential.password!=emailCredential.confirmPassword">Password Not Match</span>
+      </div>
+      <div *ngIf="Error" style="color:red">
+        <span>{{Error}}</span>
+      </div><br>
+    </div>
+
+    <button class="btn btn-default" (click)="signUp()" [disabled]="!f.valid">Sign Up</button>
+  </form>
+  <li style="color: black">Already a member? <a class="login-anchor" routerLink="/login" style="color: black">Login</a>
+  </li><br>
+  <li><a class="signup-anchor-facebook" href="#">Facebook</a></li>
+  <li><a class="signup-anchor-google" href="#">Google</a></li><br><br>
+</div>

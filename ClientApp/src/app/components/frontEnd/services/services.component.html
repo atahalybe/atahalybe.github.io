@@ -1,0 +1,294 @@
+<!-- Products -->
+<div class="gallery">
+
+  <!-- Tools-&-Parts -->
+  <div class="gallery-grids tool-parts">
+
+    <div class="container">
+
+      <div class="row">
+        <div class="col-sm-2">
+          <ul class="list-group">
+            <li class="list-group-item" [class.active]="!cat" routerLink="/services">All</li>
+
+            <li class="list-group-item" [class.active]="category.isCheck" *ngFor="let category of categories"
+              (click)="naviateToCat(category.serviceCategoryTitle)">
+              {{category.serviceCategoryTitle}}</li>
+          </ul>
+        </div>
+        <div class="col-sm-10">
+          <div class="col-md-4 col-sm-4 tools-part" *ngFor="let service of services">
+            <figure class="effect-steve">
+              <a class="swipebox">
+                <img src="{{service.imageURL}}" alt="" class="" style="height:400px;width:100%" />
+                <figcaption style="margin-top:140px">
+                  <a>
+                    <h2>{{service.serviceTitle}}</h2>
+                  </a>
+                  <!-- <div class="card-footer"> -->
+                    <button (click)="addtoCart(service)" class="btn btn-secondry btn-block"
+                      *ngIf="getQty(service)==0;else updateQty;">Add to Cart</button>
+                    <ng-template #updateQty>
+                      <!-- <div class="row"> -->
+                      <button class="btn btn-secondry" (click)="removefromCart(service)">-</button>
+                      {{getQty(service)}} in cart
+                      <button class="btn btn-secondry" (click)="addtoCart(service)">+</button>
+
+                      <!-- </div> -->
+                    </ng-template>
+                  <!-- </div> -->
+                </figcaption>
+              </a>
+            </figure>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="col-md-4 col-sm-4 tools-part">
+        <figure class="effect-steve">
+          <a href="/assets/images/tab-c1-1.jpg" class="swipebox">
+            <img src="/assets/images/bridal-makeup-images1.jpg" alt="" class="img-responsive" />
+            <figcaption>
+              <a href="bridal-makeup.html">
+                <h2>Bridal Makeup</h2>
+              </a>
+
+            </figcaption>
+          </a>
+        </figure>
+      </div>
+
+      <div class="col-md-4 col-sm-4 tools-part">
+        <figure class="effect-steve">
+          <a href="/assets/images/tab-c1-2.jpg" class="swipebox">
+            <img src="/assets/images/party-makeup-images2.jpg" alt="Excel Industries" class="img-responsive" />
+            <figcaption>
+              <a href="party-makeup.html">
+                <h2>Party Makeup</h2>
+              </a>
+
+            </figcaption>
+          </a>
+        </figure>
+      </div>
+
+      <div class="col-md-4 col-sm-4 tools-part">
+        <figure class="effect-steve">
+          <a href="/assets/images/tab-c1-3.jpg" class="swipebox">
+            <img src="/assets/images/bridal-makeup-images.jpg" alt="Excel Industries" class="img-responsive" />
+            <figcaption>
+              <a href="#">
+                <h2>Engagement Makeup</h2>
+              </a>
+
+            </figcaption>
+          </a>
+        </figure>
+      </div>
+
+      <div class="col-md-4 col-sm-4 tools-part">
+        <figure class="effect-steve">
+          <a href="/assets/images/tab-c1-4.html" class="swipebox">
+            <img src="/assets/images/dulhan-makeup-images2.jpg" alt="Excel Industries" class="img-responsive" />
+            <figcaption>
+              <a href="dulhan-makeup.html">
+                <h2>Dulhan Makeup</h2>
+              </a>
+
+            </figcaption>
+          </a>
+        </figure>
+      </div>
+
+      <div class="col-md-4 col-sm-4 tools-part">
+        <figure class="effect-steve">
+          <a href="/assets/images/tab-c2-1.html" class="swipebox">
+            <img src="/assets/images/services-3.jpg" alt="Excel Industries" class="img-responsive" />
+            <figcaption>
+              <a href="#">
+                <h2>Walima Makeup</h2>
+              </a>
+
+            </figcaption>
+          </a>
+        </figure>
+      </div>
+
+      <div class="col-md-4 col-sm-4 tools-part">
+        <figure class="effect-steve">
+          <a href="/assets/images/tab-c2-2.html" class="swipebox">
+            <img src="/assets/images/services-2.jpg" alt="Excel Industries" class="img-responsive" />
+            <figcaption>
+              <a href="Skin-Care.html">
+                <h2>Face Treatment</h2>
+              </a>
+
+            </figcaption>
+          </a>
+        </figure>
+      </div>
+
+      <div class="col-md-4 col-sm-4 tools-part">
+        <figure class="effect-steve">
+          <a href="/assets/images/tab-c2-3.html" class="swipebox">
+            <img src="/assets/images/services-1.jpg" alt="Excel Industries" class="img-responsive" />
+            <figcaption>
+              <a href="nail-saloon.html">
+                <h2>Nail Art</h2>
+              </a>
+
+            </figcaption>
+          </a>
+        </figure>
+      </div>
+
+      <div class="col-md-4 col-sm-4 tools-part">
+        <figure class="effect-steve">
+          <a href="/assets/images/tab-c2-4.html" class="swipebox">
+            <img src="/assets/images/services-5.jpg" alt="Excel Industries" class="img-responsive" />
+            <figcaption>
+              <a href="3d-eyebrows.html">
+                <h2>3D Eyebrows</h2>
+              </a>
+
+            </figcaption>
+          </a>
+        </figure>
+      </div>
+
+      <div class="col-md-4 col-sm-4 tools-part">
+        <figure class="effect-steve">
+          <a href="/assets/images/tab-c3-1.html" class="swipebox">
+            <img src="/assets/images/services-6.jpg" alt="Excel Industries" class="img-responsive" />
+            <figcaption>
+              <a href="Hair-Styling.html">
+                <h2>Hair Styling</h2>
+              </a>
+
+            </figcaption>
+          </a>
+        </figure>
+      </div>
+
+      <div class="col-md-4 col-sm-4 tools-part">
+        <figure class="effect-steve">
+          <a href="/assets/images/tab-c3-2.html" class="swipebox">
+            <img src="/assets/images/services-7.jpg" alt="Excel Industries" class="img-responsive" />
+            <figcaption>
+              <a href="#">
+                <h2>Hair Rebounding</h2>
+              </a>
+
+            </figcaption>
+          </a>
+        </figure>
+      </div>
+
+      <div class="col-md-4 col-sm-4 tools-part">
+        <figure class="effect-steve">
+          <a href="/assets/images/tab-c3-3.html" class="swipebox">
+            <img src="/assets/images/services-8.jpg" alt="Excel Industries" class="img-responsive" />
+            <figcaption>
+              <a href="Mehndi-Artist.html">
+                <h2>Mehndi Artist</h2>
+              </a>
+
+            </figcaption>
+          </a>
+        </figure>
+      </div>
+
+      <div class="col-md-4 col-sm-4 tools-part">
+        <figure class="effect-steve">
+          <a href="/assets/images/tab-c4-1.html" class="swipebox">
+            <img src="/assets/images/services-10.jpg" alt="Excel Industries" class="img-responsive" />
+            <figcaption>
+              <a href="Tattoo.html">
+                <h2>Tattoo Designing</h2>
+              </a>
+
+            </figcaption>
+          </a>
+        </figure>
+      </div>
+
+      <div class="col-md-4 col-sm-4 tools-part">
+        <figure class="effect-steve">
+          <a href="/assets/images/tab-c4-2.html" class="swipebox">
+            <img src="/assets/images/services-11.jpg" alt="Excel Industries" class="img-responsive" />
+            <figcaption>
+              <a href="skin-treatment.html">
+                <h2>Skin Treatment</h2>
+              </a>
+
+            </figcaption>
+          </a>
+        </figure>
+      </div>
+
+      <div class="col-md-4 col-sm-4 tools-part">
+        <figure class="effect-steve">
+          <a href="/assets/images/tab-c4-3.html" class="swipebox">
+            <img src="/assets/images/services-12.jpg" alt="Excel Industries" class="img-responsive" />
+            <figcaption>
+              <a href="#">
+                <h2>Weight Lose Therapy</h2>
+              </a>
+
+            </figcaption>
+          </a>
+        </figure>
+      </div>
+
+      <div class="col-md-4 col-sm-4 tools-part">
+        <figure class="effect-steve">
+          <a href="/assets/images/tab-c4-4.html" class="swipebox">
+            <img src="/assets/images/services-4.jpg" alt="Excel Industries" class="img-responsive" />
+            <figcaption>
+              <a href="#">
+                <h2>Hair Extensions</h2>
+              </a>
+
+            </figcaption>
+          </a>
+        </figure>
+      </div>
+
+      <div class="col-md-4 col-sm-4 tools-part">
+        <figure class="effect-steve">
+          <a href="/assets/images/forging.html" class="swipebox">
+            <img src="/assets/images/services-13.jpg" alt="Excel Industries" class="img-responsive" />
+            <figcaption>
+              <a href="Manicure.html">
+                <h2>Manicure</h2>
+              </a>
+
+            </figcaption>
+          </a>
+        </figure>
+      </div>
+
+      <div class="col-md-4 col-sm-4 tools-part">
+        <figure class="effect-steve">
+          <a href="/assets/images/milling.html" class="swipebox">
+            <img src="/assets/images/services-14.jpg" alt="Excel Industries" class="img-responsive" />
+            <figcaption>
+              <a href="Pedicure.html">
+                <h2>Pedicure</h2>
+              </a>
+
+            </figcaption>
+          </a>
+        </figure>
+      </div> -->
+
+      <div class="clearfix"></div>
+
+    </div>
+
+  </div>
+  <!-- //Tools-&-Parts -->
+
+</div>
+<!-- //Products -->

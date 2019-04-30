@@ -1,0 +1,71 @@
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{(!category.id||category.id==0)?'Add new':"Update"}} Category</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div> 
+  <div class="modal-body">
+    <form #f="ngForm" (ngSubmit)="save();modal.close('Save click')">
+      <div class="form-group">
+        <!-- <label>Category Title</label> -->
+        <mat-form-field style="width: 100%;" appearance="outline">
+          <mat-label>Category Title</mat-label>
+        <input type="text" matInput placeholder="Category Title" #title="ngModel" [(ngModel)]="category.serviceCategoryTitle" name="title" required 
+          (keyup)="checkTitleExistence()">
+          </mat-form-field>
+        <div *ngIf="title.dirty&&(title.invalid||state.isTitleExist)" class="text-danger">
+          <span *ngIf="title.errors?.required">Category Title is Required</span>
+          <span *ngIf="title.errors?.pattern">Category Title is Invalid.
+            <br>Category Title should be alphabetic minium 3 alphabets</span>
+
+          <span *ngIf="state.isTitleExist">{{category.title}} already Exist!</span>
+
+        </div>
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-success btn-block" [disabled]="state.isTitleExist||!f.valid">Save</button>
+      </div>
+    </form>
+  </div>
+
+</ng-template>
+<div class="container">
+  <div class="row" style="width:100%">
+    <div class="col-sm-9">
+      <h3>
+        <i class="fas fa-sitemap"></i> Service Categories</h3>
+    </div>
+    <div class="col-sm-3">
+      <button class="btn btn-primary" (click)="open(content)">Add New Category</button>
+    </div>
+  </div>
+  <form #form="ngForm">
+    <input type="text" class="form-control" #searchTxtt="ngModel" [(ngModel)]="searchTxt" name="searchTxt" (keyup)="search()"
+      placeholder="Search...">
+  </form>
+  <table class="table table-hover table-responsive-lg">
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngIf="filteredCategories&&filteredCategories.length>0; else nocat">
+        <tr *ngFor="let item of filteredCategories">
+          <td>{{item.serviceCategoryTitle}}</td>
+          <td>
+            <button class="btn btn-outline-warning" (click)="Load(item); open(content)">Edit</button>
+            <button class="btn btn-outline-danger" (click)="delete(item)">Delete</button>
+          </td>
+        </tr>
+      </ng-container>
+      <ng-template #nocat style="margin-left:35%">
+        No Category Available
+      </ng-template>
+    </tbody>
+  </table>
+</div>

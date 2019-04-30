@@ -1,0 +1,107 @@
+<div class="container p-4" style="background-color: white">
+  <form class="row mt-4" #f="ngForm" name="form">
+    <div class="col-sm-12">
+      <h5>{{(serviceId&&serviceId!=0)?"Update":"Add new"}} Service</h5>
+      <a routerLink="/services">Back to list</a>
+      <hr>
+    </div>
+    <div class="col-sm-6">
+     
+      <div class="form-group text-center">
+        <ng-template #imageUploaderModal let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Drag or Select you Service image </h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="dropzone text-center" dropZone (hovered)="toggleHover($event)"
+              (dropped)="startUpload($event)" [class.hovering]="isHovering">
+              <h3>Drop your file</h3>
+              <div class="file">
+                <label class="file-label">
+                  <span class="file-cta">
+                    <span class="file-icon">
+                      <i class="fa fa-upload"></i>
+                    </span>
+                    <span class="file-label">
+                      or choose a file…
+                    </span>
+                  </span>
+                  <br>
+                  <input class="file-input" type="file" (change)="startUpload($event.target.files)">
+                </label>
+              </div>
+            </div>
+           
+          </div>
+        </ng-template>
+        <div class="cursor-pointer" (click)="open(imageUploaderModal)">
+          <br>
+          <img *ngIf="service.imageURL;else notPhoto" src="{{service.imageURL}}" alt="" class="img-fluid"
+            style="height:auto;width:100%;" srcset="">
+          <ng-template #notPhoto>
+            <i class="fas fa-image text-warning" style="font-size: 200px;"></i>
+          </ng-template>
+          <br>
+          <br>
+          <p class="text-primary">Tap to Upload Image</p>
+          <br>
+          <br>
+
+        </div>
+
+      </div>
+      <div class="form-group">
+          <mat-form-field style="width: 100%;">
+            <mat-label>Category</mat-label>
+            <mat-select name="serviceCategoryId" #serviceCategoryId="ngModel" [(ngModel)]="service.serviceCategoryId">
+  
+              <mat-option *ngFor="let obj of serviceCats" [value]="obj.serviceCategoryId">{{obj.serviceCategoryTitle}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      <div class="form-group">
+        <mat-form-field style="width: 100%;">
+          <mat-label>Title</mat-label>
+          <input type="text" matInput placeholder="Title" #serviceTitle="ngModel" [(ngModel)]="service.serviceTitle"
+            name="serviceTitle" required>
+        </mat-form-field>
+        <div *ngIf="serviceTitle.dirty&&serviceTitle.invalid" class="text-danger">
+          <span *ngIf="serviceTitle.errors.required">Title is Required</span>
+        </div>
+      </div>
+      <div class="form-group">
+          <mat-form-field style="width: 100%;">
+            <mat-label>Description</mat-label>
+            <input type="text" matInput placeholder="Description" #description="ngModel" [(ngModel)]="service.description"
+              name="description" required>
+          </mat-form-field>
+          <div *ngIf="description.dirty&&description.invalid" class="text-danger">
+            <span *ngIf="description.errors.required">Description is Required</span>
+          </div>
+        </div>
+
+      <div class="form-group">
+        <mat-form-field style="width: 100%;">
+          <mat-label>Price</mat-label>
+          <input type="text" matInput placeholder="Price" #price="ngModel" [(ngModel)]="service.price" name="price"
+            required pattern="\d+(\.\d{1,2})?">
+        </mat-form-field>
+        <div *ngIf="price.dirty&&price.invalid" class="text-danger">
+          <span *ngIf="price.errors.required">Price is Required</span>
+          <span *ngIf="price.errors?.pattern">Price is Invalid</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <button mat-raised-button color="primary" style="width:45%" [disabled]="f.invalid" type="submit"
+          (click)="save()">Save</button>
+
+        <button mat-raised-button color="warn" style="width:45%" class="ml-2" type="button"
+          (click)="clear()">Clear</button>
+      </div>
+    </div>
+  </form>
+</div>

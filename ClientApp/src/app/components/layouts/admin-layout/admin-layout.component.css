@@ -1,0 +1,9 @@
+table{
+    background-color: white;
+}
+.scrollable-menu {
+    height: auto;
+    max-height: 600px;
+   
+    overflow-x: scroll;
+}
